@@ -7,8 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class WalletSystemApplication {
 
 	public static void main(String[] args) {
-        System.out.println("Started...");
+
 		SpringApplication.run(WalletSystemApplication.class, args);
+        System.out.println("Started...");
 	}
 
 }
