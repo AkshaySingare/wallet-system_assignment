@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: wallet-system
+
+  datasource:
+    # File-based H2 so wallet data persists across local restarts.
+    # For a purely in-memory run, swap the url for: jdbc:h2:mem:wallet;DB_CLOSE_DELAY=-1
+    url: jdbc:h2:file:./data/wallet
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        # Fail fast instead of silently waiting forever on a locked row.
+        jakarta:
+          persistence:
+            lock:
+              timeout: 5000
+    show-sql: false
+
+  # H2 web console — DEVELOPMENT/TESTING ONLY. Disable in any real deployment.
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+server:
+  port: 8080
+
+# JWT configuration. The secret MUST be supplied via the APP_JWT_SECRET
+# environment variable in any shared/deployed environment. The fallback below is
+# for local development only and is intentionally long enough for HS256.
+app:
+  jwt:
+    secret: ${APP_JWT_SECRET:local-dev-only-change-me-please-use-a-long-random-256-bit-secret}
+    expiration-ms: ${APP_JWT_EXPIRATION_MS:3600000}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    org.hibernate.SQL: warn
+    com.example.wallet_system: info

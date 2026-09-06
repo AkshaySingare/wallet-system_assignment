@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(java -version)",
+      "Bash(./mvnw -v)",
+      "Bash(timeout 300 ./mvnw -q dependency:resolve)",
+      "Bash(timeout 180 ./mvnw dependency:tree)",
+      "Bash(timeout 120 ./mvnw dependency:tree)",
+      "WebSearch",
+      "WebFetch(domain:central.sonatype.com)",
+      "Bash(timeout 300 ./mvnw -q -o compile)",
+      "Bash(timeout 400 ./mvnw -q compile)",
+      "Bash(timeout 500 ./mvnw -q compile)",
+      "Bash(timeout 900 ./mvnw test)",
+      "Bash(grep -aoE \"Caused by:[^$]*\" /home/akshay/.claude/projects/-home-akshay-IdeaProjects-wallet-system/3991bc53-3f99-4333-8440-77ef85bd2b30/tool-results/b8lcveyre.txt)",
+      "Bash(timeout 300 ./mvnw test -Dtest=WalletSystemApplicationTests -q)",
+      "Bash(echo \"exit=$?\")",
+      "Read(//tmp/**)",
+      "Bash(timeout 300 ./mvnw -q compile)",
+      "Bash(timeout 900 ./mvnw test 2>&1 | grep -vE \"Progress|Downloa\" > /tmp/test1.log 2>&1; echo \"exit=$?\"; grep -aE \"Tests run:|BUILD\" /tmp/test1.log | tail -20)",
+      "Bash(timeout 900 ./mvnw verify)",
+      "Bash(python3 -)",
+      "Bash(./mvnw -q clean verify)",
+      "Bash(./mvnw -q verify)",
+      "Bash(./mvnw verify *)"
+    ]
+  }
+}

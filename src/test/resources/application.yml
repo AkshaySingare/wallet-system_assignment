@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    # In-memory H2 for tests. MVCC keyword is default in H2 2.x.
+    url: jdbc:h2:mem:wallet-test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+    properties:
+      hibernate:
+        jakarta:
+          persistence:
+            lock:
+              timeout: 5000
+  h2:
+    console:
+      enabled: false
+
+app:
+  jwt:
+    secret: test-secret-that-is-long-enough-for-hs256-signing-000000
+    expiration-ms: 3600000
+  admin:
+    email: admin@wallet.local
+    password: Admin@12345
+
+logging:
+  level:
+    org.hibernate.SQL: warn
